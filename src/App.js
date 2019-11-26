@@ -38,7 +38,7 @@ const App = () => {
     return (
         <ThemeProvider theme={personalizedTheme ? theme(personalizedTheme) : null}>
             <SnackbarProvider maxSnack={2}>
-                {/* TO DO: USE Material UI CssBaseline here instead of body css in index html*/}
+                {/* TO DO: USE Material UI CssBaseline here instead of body css in index html */}
                 <Router>
                     <Animation atEnter={bounceTransition.atEnter} atLeave={bounceTransition.atLeave} atActive={bounceTransition.atActive} mapStyles={mapStyles} className="route-wrapper">
                         <Route exact path={ROUTE_LOGIN} component={LoginPage} />

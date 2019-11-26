@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
                 required: true,
                 label: field.name,
                 type: field.input,
+                items: field.items,
             }));
         }
         res.send({

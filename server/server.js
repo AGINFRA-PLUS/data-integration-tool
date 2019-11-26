@@ -37,6 +37,9 @@ app.use('/objectProperties', require('./routes/objectProperties'));
 app.use('/metadataFields', require('./routes/metadataFields'));
 app.use('/sendCSV', require('./routes/sendCSV'));
 app.use('/removeItem', require('./routes/removeItem'));
+app.get('/getDatasets', (req, res) => {
+    fetch(req.query.url).then(data => data.json()).then(json => res.send(json));
+});
 
 //START SERVER
 app.listen(port, () => console.log(`Upload Tool Server listening on port ${port}!`));

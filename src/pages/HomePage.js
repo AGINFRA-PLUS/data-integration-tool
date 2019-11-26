@@ -102,24 +102,26 @@ const HomePage = ({ history }) => {
                 }
             })();
             // GET USER DATA
-            (async () => {
-                setUserDataLoading(true);
-                let response = await fetch(`${process.env.REACT_APP_SERVER_ENDPOINT}/uploadedData?community=${community}&apiKey=${process.env.REACT_APP_API_KEY}`, {
-                    method: 'GET',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                });
-                let json = await response.json();
-                if (json.status === 'ok') {
-                    dispatch(setUserItems(json.data));
-                    setUserDataLoading(false);
-                } else {
-                    const { message } = json;
-                    enqueueSnackbar(message, { variant: 'error', autoHideDuration: 5000 });
-                }
-            })();
+            if (community === 'foodakai') {
+                (async () => {
+                    setUserDataLoading(true);
+                    let response = await fetch(`${process.env.REACT_APP_SERVER_ENDPOINT}/uploadedData?community=${community}&apiKey=${process.env.REACT_APP_API_KEY}`, {
+                        method: 'GET',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    let json = await response.json();
+                    if (json.status === 'ok') {
+                        dispatch(setUserItems(json.data));
+                        setUserDataLoading(false);
+                    } else {
+                        const { message } = json;
+                        enqueueSnackbar(message, { variant: 'error', autoHideDuration: 5000 });
+                    }
+                })();
+            }
         }
     }, [community, dispatch, enqueueSnackbar]);
 
@@ -217,7 +219,9 @@ const HomePage = ({ history }) => {
                         </FancyButton>
                     </center>
                     <Box marginTop={'8vh'} />
-                    {userDataLoading ? <Loader /> : <FileManager items={items} handleStreamShow={handleStreamShow} handleDatasetDownload={handleDatasetDownload} handleDelete={handleDelete} />}
+                    {community === 'foodakai' &&
+                        (userDataLoading ? <Loader /> : <FileManager items={items} handleStreamShow={handleStreamShow} handleDatasetDownload={handleDatasetDownload} handleDelete={handleDelete} />)
+                    }
                     <Box marginTop={'6vh'} />
                 </div>
             </LogoContentsTemplate>

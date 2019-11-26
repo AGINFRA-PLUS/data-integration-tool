@@ -5,7 +5,7 @@ const orDelimiter = '||';
 //get user data
 router.get('/', async (req, res) => {
     const { id, community, apiKey } = req.query; //if id is given, the request is detailed for the specific id, otherwise detailed is set to false
-    const url = `http://52.214.72.17:8080/search-api-1.0/search/`;
+    const url = `http://52.214.72.17:9091/search/`;
 
     const results = await fetch(url, {
         method: 'POST',
