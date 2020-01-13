@@ -19,6 +19,16 @@ const SelectableGroup = ({ selectables, selected, onChange }) => {
         if (onChange) onChange(value);
     }
 
+    const hackForAginfraNames = name => {
+        if (name === 'maize') {
+            return 'Maize Experiment';
+        } else if (name === 'wheat') {
+            return 'Wheat Experiment';
+        } else {
+            return name;
+        }
+    };
+
     return (
         <Box textAlign={'center'}>
             {selectables && (
@@ -29,7 +39,7 @@ const SelectableGroup = ({ selectables, selected, onChange }) => {
                             label={''}
                             style={{ flex: '1 1 0%', margin: '10px', maxWidth: '250px', alignItems: 'normal' }}
                             value={selectable.value}
-                            control={<SelectableCard title={selectable.name} subtitle={selectable.text} image={selectable.image} selected={value === selectable.value} />}
+                            control={<SelectableCard title={hackForAginfraNames(selectable.name)} subtitle={selectable.text} image={selectable.image} selected={value === selectable.value} />}
                         />
                     ))}
                 </RadioGroup>

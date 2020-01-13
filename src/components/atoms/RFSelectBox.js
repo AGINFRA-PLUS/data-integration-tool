@@ -14,7 +14,7 @@ const RFSelectBox = ({ input, label, meta: { touched, error }, items, ...custom 
     const object = useSelector(getUploadObjects);
     useEffect(() => {
         if (typeof items === 'object' && items.url) {
-            const url = items.url + (community === 'inra' ? object.charAt(0).toUpperCase() + object.slice(1) + 'Experiment' : '')
+            const url = items.url + (community === 'inra' ? (object.charAt(0).toUpperCase() + object.slice(1) + 'Experiment') : '');
 
             fetch(process.env.REACT_APP_SERVER_ENDPOINT + '/getDatasets?url=' + url)
                 .then(res => res.json())
@@ -22,15 +22,15 @@ const RFSelectBox = ({ input, label, meta: { touched, error }, items, ...custom 
         }
     }, []);
     return (
-        <FormControl error={touched && error} style={{ width:'100%', marginTop:'10px' }}>
+        <FormControl error={touched && error} style={{ width: '100%', marginTop: '10px' }}>
             <InputLabel id="select-label-id">{label}</InputLabel>
             <Select
                 {...input}
                 {...custom}
                 labelId={'select-label-id'}
                 inputProps={{
-                    name: {label},
-                    id: {label},
+                    name: { label },
+                    id: { label },
                 }}>
                 {currentItems.map((item, index) => (
                     <MenuItem key={index} value={typeof item === 'string' ? item : item.value}>
