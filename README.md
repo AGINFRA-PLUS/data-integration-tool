@@ -1,7 +1,6 @@
-## Pm2 First time installation
+## First time installation with pm2
 Client: pm2 start yarn --interpreter bash --name DataUploadTool -- start
 Server: pm2 start npm --name DataUploadServer  -- start
-
 
 
 ### Deployment
